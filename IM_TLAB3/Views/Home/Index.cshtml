@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Product>
+
+@{ Layout = "_Layout";
+    ViewBag.Title = "All Products";
+}
+
+<h2>All Products</h2>
+<h3>
+    <a asp-action="Index" class="btn btn-primary">Products</a>
+    <a asp-action="IndexCategory" class="btn btn-primary">Categories</a>
+</h3>
+<a asp-action="GetProduct" class="btn btn-sm btn-secondary">Get Product</a>
+<a asp-action="AddProduct" class="btn btn-sm btn-secondary">Add Product</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Category ID</th>
+            <th>Update</th>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+                <td>@item.CategoryId</td>
+                <td>
+                    <a asp-action="UpdateProduct" asp-route-id="@item.ProductId">
+                        <img src="~/img/update2.png"/>
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteProduct" method="post">
+                        <input type="hidden" value="@item.ProductId" name="ProductId" />
+                        <input type="image" src="~/img/delete2.png"/>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

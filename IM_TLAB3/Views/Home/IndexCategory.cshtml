@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Category>
+
+@{ Layout = "_Layout";
+    ViewBag.Title = "All Categories";
+}
+
+<h2>All Categories</h2>
+<h3>
+    <a asp-action="Index" class="btn btn-primary">Products</a>
+    <a asp-action="IndexCategory" class="btn btn-primary">Categories</a>
+</h3>
+<a asp-action="GetCategory" class="btn btn-sm btn-secondary">Get Category</a>
+<a asp-action="AddCategory" class="btn btn-sm btn-secondary">Add Category</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Update</th>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <a asp-action="UpdateCategory" asp-route-id="@item.CategoryId">
+                        <img src="~/img/update2.png" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteCategory" method="post">
+                        <input type="hidden" value="@item.CategoryId" name="CategoryId" />
+                        <input type="image" src="~/img/delete2.png" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

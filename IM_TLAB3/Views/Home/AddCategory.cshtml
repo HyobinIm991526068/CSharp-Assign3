@@ -1,0 +1,36 @@
+﻿@model Category
+@{ Layout = "_Layout";
+    ViewBag.Title = "Add Category";
+}
+
+<h2>Add Category</h2>
+<a asp-action="IndexCategory" class="btn btn-sm btn-primary">Go Back</a>
+<form asp-action="AddCategory" method="post">
+
+    <div class="form-group">
+        <label for="CategoryName">Category Name</label>
+        <input class="form-control" name="CategoryName" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Add Category</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <h2>Category</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.CategoryId</td>
+                <td>@Model.CategoryName</td>
+            </tr>
+        </tbody>
+    </table>
+}
